@@ -2,7 +2,7 @@
 using namespace std;
 int visited[2001];
 int now = 0;
-int front = 1, last = 0;
+int front = 0, last = 1;
 int n, m;
 int Q[1000001];
 int bestFront, bestLast, bestLength = 1000001;
@@ -13,7 +13,7 @@ int main()
     {
         cin >> Q[i];
     }
-    while(front <= n)
+    while(front < last)
     {
         if(now < m){
             last++;
@@ -29,13 +29,20 @@ int main()
         }
         if(now == m)
         {
-            while(visited[Q[front]] != 1)
+            while(visited[Q[front]] >= 1)
             {
                 front++;
+                visited[Q[front]]--;
             }
         }
-        cout << front << " " << last << endl;
-        return 0;
+        if((last - front + 1) < bestLength)
+        {
+            bestLength = last - front + 1;
+            bestFront = front;
+            bestLast = last;
+            cout << front << " " << last << endl;//调试
+        }
     }
+    cout << bestFront << " " << bestLast << endl;
     return 0;
 }
