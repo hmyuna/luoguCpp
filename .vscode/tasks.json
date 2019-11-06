@@ -4,7 +4,7 @@
         {
             "label": "Compile",
             "command": "g++",
-            "args": ["${file}", "-o", "${fileBasenameNoExtension}.exe"],
+            "args": ["${file}", "-o", "${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe", "-ggdb"],
         },
         {
             "label": "CompileO2",
